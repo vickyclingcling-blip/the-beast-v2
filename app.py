@@ -63,3 +63,15 @@ if st.button("EXECUTE PROTOCOL"):
                 st.write("Tip: Try a different video link, some are heavily protected!")
     else:
         st.error("No target link detected, g.")
+        # NEW STEALTH SETTINGS
+                ydl_opts = {
+                    'format': 'best[ext=mp4]/best',
+                    'outtmpl': 'raw_input.mp4',
+                    'nocheckcertificate': True,
+                    'quiet': True,
+                    'addheader': [
+                        ('Accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'),
+                        ('Accept-Language', 'en-us,en;q=0.5'),
+                    ],
+                    'user_agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
+                }
