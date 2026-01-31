@@ -21,6 +21,7 @@ mode = st.radio("Operating Mode:", ["Manual Cut", "AI Scan (Autonomous)"])
 if st.button("EXECUTE PROTOCOL"):
     if video_url:
         # A. FETCHING (Upgraded to bypass blocks)
+         # A. FETCHING (Upgraded to bypass blocks)
             status.write("📡 Scanning digital environment...")
             
             ydl_opts = {
@@ -31,6 +32,12 @@ if st.button("EXECUTE PROTOCOL"):
                 'no_warnings': True,
                 'user_agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
             }
+            
+            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                # This clears any old failed files before trying again
+                if os.path.exists("raw_input.mp4"):
+                    os.remove("raw_input.mp4")
+                ydl.download([video_url])
             
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                 # This clears any old failed files before trying again
